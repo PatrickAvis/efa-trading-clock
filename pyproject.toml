@@ -1,0 +1,55 @@
+[project]
+name = "efa-trading-clock"
+version = "2.0.0"
+description = "A compact desktop clock for GB power trading: gate closure, settlement period and EFA block."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Patrick Avis" }]
+keywords = ["electricity", "energy-trading", "gate-closure", "settlement-period", "efa"]
+classifiers = [
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    "PySide6-Essentials>=6.7",
+    "tzdata>=2024.1",
+]
+
+[project.urls]
+Repository = "https://github.com/PatrickAvis/efa-trading-clock"
+
+[project.gui-scripts]
+efa-trading-clock = "efa_trading_clock.app:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.8",
+]
+
+[tool.uv]
+# Conda's Python loads an older C++ runtime that stops Qt from importing on Windows.
+python-preference = "only-managed"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/efa_trading_clock"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "C4", "SIM"]
