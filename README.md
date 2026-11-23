@@ -14,6 +14,8 @@ cd efa-trading-clock
 uv run efa-trading-clock
 ```
 
+On Windows, you can also double-click `run-clock.bat`.
+
 To install it as a standalone command:
 
 ```shell
